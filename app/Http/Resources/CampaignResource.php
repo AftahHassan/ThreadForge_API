@@ -7,13 +7,17 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CampaignResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'target_audience' => $this->target_audience,
+            'tone' => $this->tone,
+            'max_characters' => $this->max_characters,
+            'max_hashtags' => $this->max_hashtags,
+            'style_rules' => $this->style_rules,
+            'generated_posts_count' => $this->whenCounted('generatedPosts'),
+        ];
     }
 }
