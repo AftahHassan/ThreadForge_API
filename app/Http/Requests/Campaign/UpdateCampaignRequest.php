@@ -2,28 +2,24 @@
 
 namespace App\Http\Requests\Campaign;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCampaignRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            //
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'target_audience' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'tone' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'max_characters' => ['sometimes', 'required', 'integer', 'min:50', 'max:1000'],
+            'max_hashtags' => ['sometimes', 'required', 'integer', 'min:0', 'max:10'],
+            'style_rules' => ['sometimes', 'nullable', 'string'],
         ];
     }
 }
