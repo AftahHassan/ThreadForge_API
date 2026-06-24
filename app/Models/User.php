@@ -34,4 +34,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Campaign::class);
     }
+
+    public function generatedPosts()
+    {
+        return $this->hasMany(\App\Models\GeneratedPost::class);
+    }
 }
