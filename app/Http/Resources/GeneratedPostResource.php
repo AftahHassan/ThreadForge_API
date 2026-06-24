@@ -7,13 +7,18 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class GeneratedPostResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'campaign_id' => $this->campaign_id,
+            'raw_content_id' => $this->raw_content_id,
+            'hook_propose' => $this->hook_propose,
+            'body_points' => $this->body_points,
+            'technical_readability_score' => $this->technical_readability_score,
+            'suggested_hashtags' => $this->suggested_hashtags,
+            'tone_compliance_justification' => $this->tone_compliance_justification,
+            'status' => $this->status,
+        ];
     }
 }
