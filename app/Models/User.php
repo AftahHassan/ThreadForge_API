@@ -39,4 +39,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\GeneratedPost::class);
     }
+    
+    public function rawContents()
+    {
+        return $this->hasMany(\App\Models\RawContent::class);
+    }
 }
