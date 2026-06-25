@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'groq' => [
+        'api_key' => env('GROQ_API_KEY'),
+        'api_url' => env('GROQ_API_URL'),
+        'model' => env('GROQ_MODEL'),
+    ],
+
 ];
