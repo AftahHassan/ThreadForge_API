@@ -44,4 +44,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\RawContent::class);
     }
+
+    public function conversations()
+    {
+        return $this->hasMany(\App\Models\Conversation::class);
+    }
 }

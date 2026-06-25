@@ -42,4 +42,9 @@ class GeneratedPost extends Model
     {
         return $this->belongsTo(RawContent::class);
     }
+    
+    public function conversations()
+    {
+        return $this->hasMany(\App\Models\Conversation::class);
+    }
 }
