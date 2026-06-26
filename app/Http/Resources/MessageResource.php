@@ -15,6 +15,9 @@ class MessageResource extends JsonResource
             'role' => $this->role,
             'content' => $this->content,
             'metadata' => $this->metadata,
+            'tokens_used' => $this->tokens_used ?? 0,
+            'response_time_ms' => $this->response_time_ms,
+            'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
         ];
     }
 }
