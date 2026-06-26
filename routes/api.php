@@ -20,4 +20,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/posts/{generatedPost}', [GeneratedPostController::class, 'show']);
     Route::patch('/posts/{generatedPost}/status', [GeneratedPostController::class, 'updateStatus']);
     Route::post('/posts/{post}/chat', [GhostwriterController::class, 'chat']);
+
+    Route::get('/conversations', [ConversationController::class, 'index']);
+    Route::get('/conversations/{conversation}', [ConversationController::class, 'show']);
+    Route::patch('/conversations/{conversation}', [ConversationController::class, 'update']);
+    Route::delete('/conversations/{conversation}', [ConversationController::class, 'destroy']);
 });
