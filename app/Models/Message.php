@@ -14,6 +14,8 @@ class Message extends Model
         'role',
         'content',
         'metadata',
+        'tokens_used',
+        'response_time_ms',
     ];
 
     protected $casts = [

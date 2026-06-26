@@ -13,6 +13,7 @@ class Conversation extends Model
         'user_id',
         'generated_post_id',
         'title',
+         'status',
     ];
 
     public function user()
