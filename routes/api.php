@@ -25,4 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/conversations/{conversation}', [ConversationController::class, 'show']);
     Route::patch('/conversations/{conversation}', [ConversationController::class, 'update']);
     Route::delete('/conversations/{conversation}', [ConversationController::class, 'destroy']);
+    
 });
