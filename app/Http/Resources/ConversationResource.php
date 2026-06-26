@@ -13,6 +13,17 @@ class ConversationResource extends JsonResource
             'id' => $this->id,
             'generated_post_id' => $this->generated_post_id,
             'title' => $this->title,
+            'status' => $this->status,
+            'messages_count' => $this->whenCounted('messages'),
+
+            'generated_post' => $this->whenLoaded('generatedPost', function () {
+                return [
+                    'id' => $this->generatedPost->id,
+                    'hook_propose' => $this->generatedPost->hook_propose,
+                    'status' => $this->generatedPost->status,
+                ];
+            }),
+
             'messages' => MessageResource::collection($this->whenLoaded('messages')),
         ];
     }
