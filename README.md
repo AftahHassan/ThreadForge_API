@@ -200,10 +200,8 @@ php artisan test
 
 avec tous les tests PASS.
 
-```
-<img width="1318" height="336" alt="Screenshot 2026-07-07 095932" src="https://github.com/user-attachments/assets/f654d5f0-3036-4d1d-95d9-3ee61c8d2eb9" />
+<img width="917" height="282" alt="Screenshot 2026-07-03 152356" src="https://github.com/user-attachments/assets/1f91ba23-63a4-416e-a10b-496483fcbada" />
 
-```
 
 ---
 
