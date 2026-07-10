@@ -1,342 +1,454 @@
-# 🚀 ThreadForge API
+# ThreadForge API
 
-ThreadForge API est une API REST développée avec **Laravel 13** permettant de transformer automatiquement un contenu brut en publications optimisées pour les réseaux sociaux grâce à l'intelligence artificielle.
-
-Le projet permet également d'améliorer les publications générées à l'aide d'un **Ghostwriter Assistant** conversationnel alimenté par **Groq AI**, tout en conservant l'historique des échanges.
+> API REST développée avec Laravel 13 permettant de transformer automatiquement un contenu brut en publication optimisée grâce à l'Intelligence Artificielle (Groq).
 
 ---
 
-# ✨ Fonctionnalités
+# Architecture du projet
 
-## 🔐 Authentification
-
-* Inscription d'un utilisateur
-* Connexion avec Laravel Sanctum
-* Authentification par Bearer Token
-* Déconnexion
-* Profil de l'utilisateur connecté
-
----
-
-## 📝 Campaign Blueprint Management
-
-Chaque utilisateur peut créer plusieurs Campaign Blueprints contenant :
-
-* Audience cible
-* Ton de communication
-* Nombre maximal de caractères
-* Nombre maximal de hashtags
-* Règles de style
-
-Fonctionnalités :
-
-* Création
-* Consultation
-* Modification
-* Suppression
+```
+Client (Postman / Frontend)
+        │
+        ▼
+Laravel API
+        │
+        ▼
+Controller
+        │
+        ▼
+Validation
+        │
+        ▼
+Database
+        │
+        ▼
+Queue (GeneratePostJob)
+        │
+        ▼
+Groq API
+        │
+        ▼
+Generated Posts
+```
 
 ---
 
-## 🤖 AI Repurposing Engine
+# Technologies
 
-Transformation automatique d'un contenu brut en publication optimisée grâce à Groq.
+- Laravel 13
+- PHP 8.3
+- MySQL
+- Sanctum
+- Queue
+- Jobs
+- Groq API
+- Pest
+- PHPUnit
+- GitHub
+- GitHub Actions
+- Azure VM
+- Nginx
+- Scribe
+- Postman
+
+---
+
+# Fonctionnalités réalisées
+
+## Jour 1 — Authentification
+
+### Fonctionnalités
+
+- Register
+- Login
+- Logout
+- Me
+
+### Technologies
+
+- Laravel Sanctum
+- AuthController
+- API Token
+- Bearer Token
+
+### Routes
+
+POST /api/register
+
+POST /api/login
+
+GET /api/me
+
+POST /api/logout
+
+---
+
+## Jour 2 — Campaign Management
+
+### Fonctionnalités
+
+CRUD complet des Campaigns.
+
+### Routes
+
+GET /api/campaigns
+
+POST /api/campaigns
+
+GET /api/campaigns/{campaign}
+
+PATCH /api/campaigns/{campaign}
+
+DELETE /api/campaigns/{campaign}
+
+---
+
+## Jour 3 — Génération IA
+
+### Fonctionnalités
+
+Transformation d'un contenu brut en publication IA.
+
+### Technologies
+
+- RawContent
+- GeneratedPost
+- GeneratePostJob
+- Queue
+- Groq API
+
+### Route
+
+POST /api/content/repurpose
+
+### Consultation
+
+GET /api/posts
+
+GET /api/posts/{generatedPost}
+
+PATCH /api/posts/{generatedPost}/status
+
+---
+
+## Jour 4 — Ghostwriter
+
+### Fonctionnalités
+
+Assistant conversationnel permettant de modifier un post.
+
+### Routes
+
+POST /api/posts/{post}/chat
+
+GET /api/conversations
+
+GET /api/conversations/{conversation}
+
+PATCH /api/conversations/{conversation}
+
+DELETE /api/conversations/{conversation}
+
+---
+
+## Jour 5 — Documentation
+
+### Documentation
+
+- README
+- Scribe
+- Documentation API
+- Tests Postman
+
+---
+
+# Phase 0 — Tests automatiques
+
+## Objectif
+
+Vérifier automatiquement le bon fonctionnement de l'API.
+
+### Tests réalisés
+
+✅ Register
+
+✅ Login
+
+✅ Route protégée
+
+✅ Validation Campaign
+
+✅ Génération asynchrone
+
+Commande :
+
+```bash
+php artisan test
+```
+
+---
+
+# 📸 IMAGE 1
+
+## Résultat des tests
+
+> Insérer ici une capture de :
+
+```
+php artisan test
+```
+
+avec tous les tests PASS.
+
+```
+========================================
+
+        [ INSÉRER IMAGE ICI ]
+
+========================================
+```
+
+---
+
+# Phase 1 — GitHub Actions
+
+## Objectif
+
+Automatiser les tests après chaque :
+
+```
+git push
+```
 
 Workflow :
 
-Raw Content
+```
+git push
 
 ↓
 
-Queue Laravel
+GitHub
 
 ↓
 
-Groq AI
+Workflow YAML
 
 ↓
 
-Generated Post
+Runner Ubuntu
 
-Le contenu généré comprend :
+↓
 
-* Hook
-* Body Points
-* Technical Readability Score
-* Suggested Hashtags
-* Tone Compliance Justification
+composer install
 
----
+↓
 
-## 💬 Ghostwriter Assistant
+php artisan test
 
-Le Ghostwriter permet d'améliorer un post déjà généré.
+↓
 
-L'utilisateur peut discuter avec l'IA afin de :
+✅ Check Vert
 
-* améliorer le hook
-* modifier le ton
-* raccourcir le texte
-* traduire
-* ajouter des emojis
-* améliorer l'engagement
+ou
 
-Toutes les conversations sont sauvegardées.
-
----
-
-# 🏗 Architecture
-
-```text
-User
- │
- ├── Campaign
- │      │
- │      └── GeneratedPost
- │               ▲
- │               │
- │         RawContent
- │
- └── Conversation
-         │
-         └── Message
+❌ Check Rouge
 ```
 
 ---
 
-# 🗄 Database Model
+# 📸 IMAGE 2
+
+## GitHub Actions
+
+Insérer ici une capture de :
+
+- Onglet Actions
+- Workflow réussi
+- Check vert
 
 ```
-User 1,N Campaign
+========================================
 
-Campaign 1,N GeneratedPost
+        [ INSÉRER IMAGE ICI ]
 
-RawContent 1,N GeneratedPost
-
-GeneratedPost 1,N Conversation
-
-Conversation 1,N Message
-```
-
----
-
-# ⚙ Technologies
-
-* Laravel 13
-* PHP 8.x
-* MySQL
-* Laravel Sanctum
-* Laravel Queue
-* Eloquent ORM
-* API Resources
-* Form Requests
-* Groq API
-* Postman
-* Git
-* GitHub
-* Jira
-
----
-
-# 📂 Project Structure
-
-```
-app/
- ├── Http/
- │      ├── Controllers/
- │      ├── Requests/
- │      └── Resources/
- │
- ├── Jobs/
- │      └── GeneratePostJob
- │
- ├── Models/
- │
-routes/
- └── api.php
+========================================
 ```
 
 ---
 
-# 🔑 Authentication
+# Phase 2 — Déploiement Azure
 
-Toutes les routes protégées utilisent :
+## Objectif
+
+Mettre ThreadForge en ligne.
+
+### Déploiement
+
+- Azure VM Ubuntu
+- SSH
+- Nginx
+- PHP
+- Composer
+- MySQL
+- Queue Worker
+
+L'API est accessible depuis Internet.
+
+Workflow :
 
 ```
-auth:sanctum
-```
+GitHub
 
-Après le Login, Laravel retourne un Bearer Token.
+↓
 
-Toutes les requêtes authentifiées doivent contenir :
+Azure VM
 
-```
-Authorization: Bearer YOUR_TOKEN
-Accept: application/json
+↓
+
+Clone
+
+↓
+
+.env Production
+
+↓
+
+composer install --no-dev
+
+↓
+
+php artisan migrate
+
+↓
+
+php artisan queue:work
+
+↓
+
+API disponible
 ```
 
 ---
 
-# 📡 Main API Endpoints
+# 📸 IMAGE 3
 
-## Authentication
+## Déploiement + Test Postman
 
-| Method | Endpoint      |
-| ------ | ------------- |
-| POST   | /api/register |
-| POST   | /api/login    |
-| GET    | /api/me       |
-| POST   | /api/logout   |
+Insérer ici :
 
----
+- Capture Postman
+- URL Azure
+- Réponse JSON
 
-## Campaign Blueprint
+```
+========================================
 
-| Method    | Endpoint            |
-| --------- | ------------------- |
-| GET       | /api/campaigns      |
-| POST      | /api/campaigns      |
-| GET       | /api/campaigns/{id} |
-| PUT/PATCH | /api/campaigns/{id} |
-| DELETE    | /api/campaigns/{id} |
+        [ INSÉRER IMAGE ICI ]
+
+========================================
+```
 
 ---
 
-## AI Repurposing
+# Routes principales
 
-| Method | Endpoint               |
-| ------ | ---------------------- |
-| POST   | /api/content/repurpose |
-| GET    | /api/posts             |
-| GET    | /api/posts/{id}        |
-| PATCH  | /api/posts/{id}/status |
+## Auth
+
+POST /api/register
+
+POST /api/login
+
+GET /api/me
+
+POST /api/logout
+
+---
+
+## Campaigns
+
+GET /api/campaigns
+
+POST /api/campaigns
+
+GET /api/campaigns/{campaign}
+
+PATCH /api/campaigns/{campaign}
+
+DELETE /api/campaigns/{campaign}
+
+---
+
+## AI
+
+POST /api/content/repurpose
+
+GET /api/posts
+
+GET /api/posts/{generatedPost}
+
+PATCH /api/posts/{generatedPost}/status
 
 ---
 
 ## Ghostwriter
 
-| Method | Endpoint             |
-| ------ | -------------------- |
-| POST   | /api/posts/{id}/chat |
+POST /api/posts/{post}/chat
 
 ---
 
 ## Conversations
 
-| Method | Endpoint                |
-| ------ | ----------------------- |
-| GET    | /api/conversations      |
-| GET    | /api/conversations/{id} |
-| PATCH  | /api/conversations/{id} |
-| DELETE | /api/conversations/{id} |
+GET /api/conversations
+
+GET /api/conversations/{conversation}
+
+PATCH /api/conversations/{conversation}
+
+DELETE /api/conversations/{conversation}
 
 ---
 
-# 🚀 Installation
+# Ce que j'ai appris
 
-Clone the repository
-
-```bash
-git clone https://github.com/AftahHassan/ThreadForge_API.git
-```
-
-Go to the project
-
-```bash
-cd ThreadForge_API
-```
-
-Install dependencies
-
-```bash
-composer install
-```
-
-Copy the environment file
-
-```bash
-cp .env.example .env
-```
-
-Generate the application key
-
-```bash
-php artisan key:generate
-```
-
-Configure your MySQL database inside the `.env` file.
-
-Run migrations
-
-```bash
-php artisan migrate
-```
-
-Create the queue tables
-
-```bash
-php artisan queue:table
-php artisan migrate
-```
-
-Start the application
-
-```bash
-php artisan serve
-```
-
-Run the queue worker
-
-```bash
-php artisan queue:work
-```
+- Laravel 13
+- REST API
+- Sanctum
+- Bearer Token
+- Middleware
+- Controllers
+- Models
+- Migrations
+- Form Requests
+- API Resources
+- Queue
+- Jobs
+- Worker
+- Dispatch
+- Groq API
+- Prompt Engineering
+- Tests automatiques avec Pest
+- GitHub Actions
+- Déploiement Azure
+- Nginx
+- CI/CD
 
 ---
 
-# 🤖 Groq Configuration
+# Objectif pédagogique
 
-Configure your `.env` file
+Comprendre chaque notion avant d'écrire le code.
 
-```env
-GROQ_API_KEY=YOUR_API_KEY
-GROQ_MODEL=llama-3.3-70b-versatile
-QUEUE_CONNECTION=database
-```
+Méthode suivie :
 
----
-
-# 🧪 End-to-End Workflow
-
-1. Register
-2. Login
-3. Create Campaign Blueprint
-4. Submit Raw Content
-5. Queue launches GeneratePostJob
-6. Groq generates the post
-7. Generated Post is stored
-8. Start a Ghostwriter conversation
-9. Continue improving the post
-10. Logout
-
----
-
-# 📌 Future Improvements
-
-* API Documentation (Scribe / OpenAPI)
-* Docker support
-* PHPUnit Feature Tests
-* Rate Limiting
-* Admin Dashboard
-* Multi-provider AI support (OpenAI, xAI, Anthropic)
-
----
-
-# 👨‍💻 Author
-
-**Hassan Aftah**
-
-GitHub Repository:
-
-https://github.com/AftahHassan/ThreadForge_API
-
-
-<img width="1536" height="1024" alt="ChatGPT Image 25 juin 2026, 10_33_15" src="https://github.com/user-attachments/assets/295e81d5-92fd-46b1-94df-4d5c311f6da2" />
+1. Contexte
+2. Définitions
+3. Théorie
+4. Workflow
+5. Exemple réel
+6. Implémentation
+7. Tests Postman
+8. Tests automatiques
+9. Questions d'entretien
+10. Erreurs fréquentes
+11. Déploiement
+12. Documentation
