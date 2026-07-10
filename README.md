@@ -261,11 +261,7 @@ Insérer ici une capture de :
 - Workflow réussi
 - Check vert
 
-```
-![Uploading Screenshot 2026-07-10 163908.png…]()
-
-
-```
+<img width="1916" height="521" alt="Screenshot 2026-07-10 163908" src="https://github.com/user-attachments/assets/df93afb7-f6f4-461b-8ff3-b9af26a3076a" />
 
 ---
 
@@ -332,11 +328,8 @@ Insérer ici :
 - Capture Postman
 - URL Azure
 - Réponse JSON
+<img width="1443" height="791" alt="Screenshot 2026-07-10 162647" src="https://github.com/user-attachments/assets/b1b0f276-acdd-4ff5-8b27-db9eeb2da277" />
 
-```
-<img width="1443" height="791" alt="Screenshot 2026-07-10 162647" src="https://github.com/user-attachments/assets/b425f27d-42a8-414a-8826-74875957ed7a" />
-
-```
 
 ---
 
