@@ -201,11 +201,8 @@ php artisan test
 avec tous les tests PASS.
 
 ```
-========================================
+<img width="1318" height="336" alt="Screenshot 2026-07-07 095932" src="https://github.com/user-attachments/assets/f654d5f0-3036-4d1d-95d9-3ee61c8d2eb9" />
 
-        [ INSÉRER IMAGE ICI ]
-
-========================================
 ```
 
 ---
@@ -267,11 +264,9 @@ Insérer ici une capture de :
 - Check vert
 
 ```
-========================================
+![Uploading Screenshot 2026-07-10 163908.png…]()
 
-        [ INSÉRER IMAGE ICI ]
 
-========================================
 ```
 
 ---
@@ -341,11 +336,8 @@ Insérer ici :
 - Réponse JSON
 
 ```
-========================================
+<img width="1443" height="791" alt="Screenshot 2026-07-10 162647" src="https://github.com/user-attachments/assets/b425f27d-42a8-414a-8826-74875957ed7a" />
 
-        [ INSÉRER IMAGE ICI ]
-
-========================================
 ```
 
 ---
